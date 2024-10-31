@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
+
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
-import ProductList from '../../components/ProductList/ProductList';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import './Search.scss';
 
 const Search = () => {
@@ -26,7 +27,19 @@ const Search = () => {
           {searchedWord === '' ? (
             <span className="pleaseSearch">검색어를 입력해 주세요.</span>
           ) : (
-            <ProductList products={products} />
+            <div className="productList">
+              {products.map(product => {
+                return (
+                  <Link
+                    className="link"
+                    key={product.id}
+                    to={`/product/${product.id}`}
+                  >
+                    <ProductCard key={product.id} product={product} />
+                  </Link>
+                );
+              })}
+            </div>
           )}
         </div>
       </div>

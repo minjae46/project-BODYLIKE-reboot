@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReviewWindow from '../ReviewWindow/ReviewWindow';
-import './Product.scss';
-import Modal from './Modal';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
-import ProductDetail from './ProductDetail';
+import Modal from './Modal';
+import ProductInfo from './ProductInfo';
+import ReviewWindow from './ReviewWindow';
+import './ProductDetail.scss';
 
-const Product = () => {
+const ProductDetail = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const productId = params.id;
+
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const productId = params.id;
-  const counted = parseInt(count);
+
   const { name, thumbnail_image_url, price, detail, stock } = product;
+
+  const counted = parseInt(count);
+
   const token = localStorage.getItem('token') || ' ';
 
   useEffect(() => {
@@ -118,7 +122,6 @@ const Product = () => {
                   원
                 </div>
                 <div className="salePrice">
-                  {' '}
                   {priceOfInteger.toLocaleString()} 원{' '}
                 </div>
               </div>
@@ -170,7 +173,7 @@ const Product = () => {
           </div>
           {isModalOpen === true && <Modal toggleModal={toggleModal} />}
           <div>
-            <ProductDetail ProductDetails={detail} />
+            <ProductInfo ProductInfoImg={detail} />
             <ReviewWindow products={productId} />
           </div>
         </div>
@@ -180,4 +183,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetail;

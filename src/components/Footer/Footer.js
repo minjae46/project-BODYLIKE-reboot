@@ -1,9 +1,7 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
-  const location = useLocation();
   return (
     <footer className="footer">
       <div className="footerInner">

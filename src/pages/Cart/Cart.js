@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 import CartProductTable from './CartProductTable';
-import CartFooter from './CartFooter';
+import CartInfo from './CartInfo';
 import './Cart.scss';
 
 const Cart = () => {
@@ -185,7 +185,7 @@ const Cart = () => {
               <button className="goShoppingBtn">쇼핑계속하기</button>
             </Link>
           </div>
-          <CartFooter />
+          <CartInfo />
         </div>
       </div>
       <Footer />

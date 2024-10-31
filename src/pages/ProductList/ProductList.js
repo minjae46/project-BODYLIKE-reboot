@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
+
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
-import ProductList from '../../components/ProductList/ProductList';
-import './CategoryProduct.scss';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import './ProductList.scss';
 
-const CategoryProduct = () => {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [totalProduct, setTotalProduct] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -69,7 +70,19 @@ const CategoryProduct = () => {
       <div className="categoryProduct">
         <div className="wrapper">
           <div className="pagination">
-            <ProductList products={products} />
+            <div className="productList">
+              {products.map(product => {
+                return (
+                  <Link
+                    className="link"
+                    key={product.id}
+                    to={`/product/${product.id}`}
+                  >
+                    <ProductCard key={product.id} product={product} />
+                  </Link>
+                );
+              })}
+            </div>
             <div className="paginationGroup">
               <button className="prevPage" onClick={() => movePrev(page)}>
                 이전
@@ -104,4 +117,4 @@ const CategoryProduct = () => {
   );
 };
 
-export default CategoryProduct;
+export default ProductList;
